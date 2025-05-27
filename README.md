@@ -26,6 +26,34 @@ A Bash script that detects your operating system and automates system cleanup ac
 
 ---
 
+## ⏰ Automate with Cron
+
+You can set up a cron job to run the cleanup script automatically at regular intervals (e.g., every Sunday at 2:00 AM).
+
+### 🔧 Steps to Add Cron Job
+
+1. Open the crontab editor:
+
+   ```bash
+   crontab -e
+   ```
+
+2. Add the following line at the end of the file:
+
+   ```bash
+   0 2 * * 0 /bin/bash /full/path/to/Auto_Clean/system_cleanup.sh >> /var/log/system_cleanup.log 2>&1
+   ```
+
+   🔍 **Explanation:**
+   - `0 2 * * 0` → Runs at 2:00 AM every Sunday
+   - `/bin/bash` → Ensures it's executed in Bash
+   - `/full/path/to/Auto_Clean/system_cleanup.sh` → Replace with the **absolute path** to your script
+   - `>> /var/log/system_cleanup.log 2>&1` → Appends output (stdout + stderr) to a log file
+
+3. Save and exit. Cron will automatically schedule the job.
+
+---
+
 ## ⚠️ Note
 
 This script **will not work on Windows**, due to the following reasons:
